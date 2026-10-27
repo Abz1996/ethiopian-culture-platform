@@ -1,0 +1,7 @@
+.terraform/
+*.tfstate*
+*.tfplan
+terraform/environments/*/outputs/
+terraform/environments/ALL-ENVIRONMENTS.md
+__pycache__/
+.pytest_cache/

@@ -1,0 +1,30 @@
+{
+  "traditions": [
+    {"slug":"coffee-ceremony","name":"Coffee Ceremony (Buna Tetu)","amharic":"ቡና ጠጡ",
+     "description":"A ritual of hospitality in which green beans are roasted, ground and brewed in a jebena while frankincense burns. Three rounds are served: abol, tona and baraka. Declining all three is considered impolite.",
+     "highlights":["Roasting beans at the table","Frankincense (etan) incense","Three rounds: abol, tona, baraka","Served with kolo or popcorn"]},
+    {"slug":"gursha","name":"Gursha","amharic":"ጉርሻ",
+     "description":"Feeding someone a bite of food by hand, placed directly into their mouth, as a gesture of love, respect and friendship. The larger the gursha, the stronger the bond.",
+     "highlights":["Shared platter","Eating with the right hand","Meals as community"]},
+    {"slug":"mesob","name":"Mesob","amharic":"መሶብ",
+     "description":"A woven basket table used to serve injera and stews. Families traditionally gather around one mesob and share from a common plate.",
+     "highlights":["Hand-woven grass","Communal dining"]},
+    {"slug":"fasting","name":"Fasting (Tsom)","amharic":"ጾም",
+     "description":"Orthodox Christians observe over 200 fasting days a year, including Wednesdays, Fridays and the 55-day Lent (Abiy Tsom), eating vegan food. This is why Ethiopian cuisine has such a rich plant-based repertoire, with the yetsom beyaynetu platter as its showpiece.",
+     "highlights":["Wednesdays and Fridays","Abiy Tsom (Great Lent)","Beyaynetu vegan platter"]},
+    {"slug":"calendar","name":"The Ethiopian Calendar","amharic":"የኢትዮጵያ ዘመን አቆጣጠር",
+     "description":"Ethiopia uses its own calendar with twelve 30-day months and a thirteenth month, Pagume, of five or six days. It runs roughly seven to eight years behind the Gregorian calendar.",
+     "highlights":["13 months","Pagume","New Year in September"]},
+    {"slug":"languages","name":"Languages and Peoples","amharic":"ቋንቋዎች",
+     "description":"Ethiopia is home to more than 80 ethnic groups. Amharic is the federal working language, alongside Oromo, Tigrinya, Somali, Afar and many others. The Ge'ez script is used to write Amharic and Tigrinya.",
+     "highlights":["80+ ethnic groups","Ge'ez script","Amharic, Oromo, Tigrinya"]}
+  ],
+  "holidays": [
+    {"slug":"enkutatash","name":"Enkutatash (New Year)","amharic":"እንቁጣጣሽ","date":"September 11 (September 12 in Gregorian leap-year cycles)","description":"Marks the end of the rainy season and the start of the Ethiopian year. Families share doro wat and children give flowers and paintings.","foods":["doro-wat","injera","tej"]},
+    {"slug":"meskel","name":"Meskel","amharic":"መስቀል","date":"September 27","description":"Commemorates the finding of the True Cross. Communities light a large bonfire called the demera. Inscribed on UNESCO's Intangible Cultural Heritage list in 2013.","foods":["kitfo","tibs","injera"]},
+    {"slug":"genna","name":"Genna (Ethiopian Christmas)","amharic":"ገና","date":"January 7","description":"Follows a 43-day fast, so the feast is especially joyful. Celebrated with church services, doro wat and the traditional game of genna.","foods":["doro-wat","injera","tej"]},
+    {"slug":"timkat","name":"Timkat (Epiphany)","amharic":"ጥምቀት","date":"January 19","description":"A colorful celebration of the baptism of Jesus with processions of tabots. Inscribed by UNESCO in 2019. Lalibela and Gondar host famous celebrations.","foods":["doro-wat","injera"]},
+    {"slug":"fasika","name":"Fasika (Ethiopian Easter)","amharic":"ፋሲካ","date":"Date varies (Orthodox calendar)","description":"Ends the 55-day Lent. Families break the fast after the midnight service with doro wat, tibs and plenty of injera.","foods":["doro-wat","tibs","injera"]},
+    {"slug":"adwa","name":"Adwa Victory Day","amharic":"የአድዋ ድል በዓል","date":"March 2","description":"Commemorates Ethiopia's 1896 victory over Italian colonial forces at the Battle of Adwa, a symbol of African independence.","foods":["injera","shiro"]}
+  ]
+}

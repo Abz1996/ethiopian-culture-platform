@@ -1,0 +1,24 @@
+fullnameOverride: habesha-culture
+environment: dev
+replicaCount: 2
+
+image:
+  repository: habesha-culture
+  tag: latest
+  pullPolicy: IfNotPresent
+imagePullSecrets:
+  - name: artifactory-pull
+
+service:
+  type: LoadBalancer
+  port: 80
+
+resources:
+  requests: { cpu: 100m, memory: 128Mi }
+  limits: { memory: 256Mi }
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70

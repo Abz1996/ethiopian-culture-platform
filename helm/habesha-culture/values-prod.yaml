@@ -1,0 +1,11 @@
+environment: prod
+replicaCount: 3
+image:
+  pullPolicy: Always
+resources:
+  requests: { cpu: 250m, memory: 256Mi }
+  limits: { memory: 512Mi }
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10

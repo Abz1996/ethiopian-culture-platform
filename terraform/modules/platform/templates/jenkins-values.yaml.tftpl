@@ -1,0 +1,81 @@
+controller:
+  serviceType: LoadBalancer
+  loadBalancerSourceRanges: ${jsonencode(allowed_cidrs)}
+  admin:
+    username: admin
+  numExecutors: 0
+  resources:
+    requests:
+      cpu: "${cpu}"
+      memory: "${mem}"
+    limits:
+      memory: "${mem}"
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - job-dsl:latest
+    - credentials-binding:latest
+    - pipeline-stage-view:latest
+    - timestamper:latest
+    - jfrog:latest
+  containerEnv:
+    - name: ARTIFACTORY_USER
+      valueFrom:
+        secretKeyRef:
+          name: platform-credentials
+          key: artifactory-user
+    - name: ARTIFACTORY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: platform-credentials
+          key: artifactory-password
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      habesha-welcome: |
+        jenkins:
+          systemMessage: "ሰላም (Selam)! Habesha Kitchen CI/CD - building, scanning and serving Ethiopian food and culture."
+      global-env: |
+        jenkins:
+          globalNodeProperties:
+            - envVars:
+                env:
+%{ for k, v in global_env }
+                  - key: "${k}"
+                    value: "${v}"
+%{ endfor }
+      credentials: |
+        credentials:
+          system:
+            domainCredentials:
+              - credentials:
+                  - usernamePassword:
+                      scope: GLOBAL
+                      id: "artifactory-creds"
+                      description: "Artifactory admin (created by Terraform)"
+                      username: "$${ARTIFACTORY_USER}"
+                      password: "$${ARTIFACTORY_PASSWORD}"
+      seed-job: |
+        jobs:
+          - script: |
+              pipelineJob('ethiopian-culture-deploy') {
+                description('Build, scan (Trivy + Xray) and deploy the Habesha Kitchen app')
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote { url('${git_repo_url}') }
+                        branches('*/${git_branch}')
+                      }
+                    }
+                    scriptPath('Jenkinsfile')
+                  }
+                }
+                triggers { scm('H/5 * * * *') }
+              }
+
+persistence:
+  enabled: true
+  size: "${storage}"

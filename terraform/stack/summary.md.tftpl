@@ -1,0 +1,27 @@
+# 🇪🇹 Habesha Kitchen — ${s.environment} environment
+
+| | |
+|---|---|
+| Region | `${s.region}` |
+| EKS cluster | `${s.cluster.name}` (k8s ${s.cluster.kubernetes_version}) |
+| Configure kubectl | `${s.cluster.kubeconfig_command}` |
+
+## Platform services
+| Service | URL / Endpoint | Notes |
+|---|---|---|
+| Jenkins | ${s.jenkins.url} | user `${s.jenkins.admin_user}`; password: `${s.jenkins.password_command}`; job `${s.jenkins.pipeline_job}` |
+| JFrog Artifactory | ${s.artifactory.url} | user `${s.artifactory.admin_user}`; password: `${s.artifactory.password_command}` |
+| Docker registry | `${s.artifactory.docker_registry}` | repo `docker-local` (created by the pipeline) |
+| JFrog Xray | ${s.xray.url} | enabled: ${s.xray.enabled} (needs Xray-capable license) |
+| Trivy server | `${s.trivy.server_url_in_cluster}` | in-cluster only |
+| Trivy Operator | namespace `${s.trivy.operator_namespace}` | `${s.trivy.reports_command}` |
+
+## Application
+- Namespace: `${s.app.namespace}`
+- Helm release: `${s.app.helm_release}`
+- Get app URL after the pipeline runs: `${s.app.url_command}`
+
+## Deployed chart versions (pin these in tfvars `chart_versions`)
+%{ for k, v in s.helm_chart_versions ~}
+- ${k}: `${v}`
+%{ endfor ~}

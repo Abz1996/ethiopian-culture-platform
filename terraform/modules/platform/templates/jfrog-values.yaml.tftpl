@@ -1,0 +1,47 @@
+# NOTE: key paths follow the jfrog-platform umbrella chart. After the first apply,
+# compare with `helm show values jfrog/jfrog-platform --version <pinned>` if you upgrade.
+artifactory:
+  enabled: true
+  artifactory:
+    admin:
+      username: admin
+    primary:
+      javaOpts:
+        xmx: "${artifactory_xmx}"
+      resources:
+        requests:
+          cpu: "${artifactory_cpu}"
+          memory: "${artifactory_mem}"
+        limits:
+          memory: "${artifactory_mem}"
+    persistence:
+      size: "${storage_size}"
+%{ if has_license ~}
+    license:
+      secret: artifactory-license
+      dataKey: artifactory.lic
+%{ endif ~}
+  nginx:
+    enabled: true
+    service:
+      type: LoadBalancer
+      loadBalancerSourceRanges: ${jsonencode(allowed_cidrs)}
+      annotations: ${jsonencode(lb_annotations)}
+
+xray:
+  enabled: ${enable_xray}
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: "${xray_cpu}"
+      memory: "${xray_mem}"
+    limits:
+      memory: "${xray_mem}"
+
+rabbitmq:
+  enabled: ${enable_xray}
+
+postgresql:
+  enabled: true
+  persistence:
+    size: "${postgres_size}"

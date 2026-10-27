@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habesha Kitchen · Ethiopian Food &amp; Culture</title>
+<style>
+  :root { --green:#078930; --yellow:#fcdd09; --red:#da121a; --ink:#2b1d14; --paper:#fffaf0; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Georgia, "Noto Serif Ethiopic", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  .flag { height:10px; background:linear-gradient(90deg,var(--green) 33%,var(--yellow) 33% 66%,var(--red) 66%); }
+  header { padding:2.5rem 1.5rem 1.5rem; text-align:center; }
+  header h1 { margin:0; font-size:2.4rem; }
+  header p { margin:.4rem 0 0; opacity:.8; }
+  .env { display:inline-block; margin-top:.8rem; padding:.15rem .7rem; border-radius:99px; background:var(--ink); color:var(--yellow); font:600 .8rem system-ui; }
+  main { max-width:1000px; margin:0 auto; padding:0 1.5rem 3rem; }
+  h2 { border-bottom:3px solid var(--yellow); padding-bottom:.3rem; margin-top:2.5rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+  .card { background:#fff; border:1px solid #eadfc8; border-left:5px solid var(--green); border-radius:8px; padding:1rem 1.1rem; }
+  .card.hol { border-left-color:var(--red); }
+  .card.trad { border-left-color:var(--yellow); }
+  .card h3 { margin:0 0 .2rem; }
+  .am { color:var(--red); font-size:1.05rem; }
+  .tag { font:600 .7rem system-ui; text-transform:uppercase; letter-spacing:.05em; background:#eef7ee; color:var(--green); padding:.1rem .5rem; border-radius:4px; }
+  .date { font:600 .85rem system-ui; color:var(--red); }
+  footer { text-align:center; padding:1.5rem; font:.85rem system-ui; opacity:.7; }
+</style>
+</head>
+<body>
+<div class="flag"></div>
+<header>
+  <h1>ሰላም! Welcome to Habesha Kitchen</h1>
+  <p>A taste of Ethiopian food &amp; culture</p>
+  <span class="env">{{ environment }} · v{{ version }}</span>
+</header>
+<main>
+  <h2>Dishes &amp; Drinks</h2>
+  <div class="grid">
+  {% for d in dishes %}
+    <div class="card">
+      <h3>{{ d.name }} <span class="am">{{ d.amharic }}</span></h3>
+      <span class="tag">{{ d.category }}</span>
+      {% if d.fasting_friendly %}<span class="tag">fasting-friendly</span>{% endif %}
+      <p>{{ d.description }}</p>
+    </div>
+  {% endfor %}
+  </div>
+
+  <h2>Traditions</h2>
+  <div class="grid">
+  {% for t in traditions %}
+    <div class="card trad">
+      <h3>{{ t.name }}</h3>
+      <div class="am">{{ t.amharic }}</div>
+      <p>{{ t.description }}</p>
+    </div>
+  {% endfor %}
+  </div>
+
+  <h2>Festivals &amp; Holidays</h2>
+  <div class="grid">
+  {% for h in holidays %}
+    <div class="card hol">
+      <h3>{{ h.name }}</h3>
+      <div class="am">{{ h.amharic }}</div>
+      <div class="date">{{ h.date }}</div>
+      <p>{{ h.description }}</p>
+    </div>
+  {% endfor %}
+  </div>
+</main>
+<footer>API: /api/dishes · /api/culture · /api/holidays · /healthz</footer>
+<div class="flag"></div>
+</body>
+</html>
